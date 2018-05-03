@@ -1,0 +1,5 @@
+rootProject.name = 'Hodor'
+include 'Hodor-core'
+include 'Hodor-cgi'
+include 'Hodor-job'
+include 'Hodor-bui'

@@ -1,0 +1,80 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group 'com.codido'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+//apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+//排除tomcat配置
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
+
+dependencies {
+    compile project(':Hodor-core')
+
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-jetty:1.4.1.RELEASE")
+    compile('org.springframework.boot:spring-boot-configuration-processor')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+    compile('com.ibeetl:beetl:2.7.27')
+    compile('com.ibeetl:beetl-framework-starter:1.1.45.RELEASE')
+
+
+    //compile('javax.servlet:jstl')
+    //compile('javax.servlet:javax.servlet-api')
+    //runtime ("org.apache.tomcat.embed:tomcat-embed-jasper")
+
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+    runtime('mysql:mysql-connector-java')
+    compile('com.alibaba:druid:1.0.20')
+
+    compile('com.alibaba:fastjson:1.2.12')
+    compile('org.codehaus.jackson:jackson-core-asl:1.9.13')
+    compile('com.google.code.gson:gson:2.8.2')
+
+    compile('com.github.binarywang:weixin-java-mp:2.9.0')
+    compile('com.github.binarywang:weixin-java-pay:2.9.0')
+
+    compile('com.qiniu:qiniu-java-sdk:7.2.+')
+    compile('net.coobird:thumbnailator:0.4.8')
+
+    compile("org.apache.commons:commons-lang3:3.4")
+    compile("commons-io:commons-io:2.5")
+    compile("org.apache.httpcomponents:httpcore:4.4.8")
+    compile("org.apache.httpcomponents:httpclient:4.5.4")
+    compile("org.apache.httpcomponents:httpmime:4.5.4")
+    compile("com.thoughtworks.xstream:xstream:1.4.9")
+
+    compile("org.projectlombok:lombok:1.16.20")
+
+    //compile('io.springfox:springfox-swagger2:2.2.2')
+    //compile('io.springfox:springfox-swagger-ui:2.2.2')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

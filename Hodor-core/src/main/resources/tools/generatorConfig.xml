@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+
+    <!--id:必选，上下文id，用于在生成错误时提示-->
+    <context id="mysql" targetRuntime="MyBatis3">
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 对注释进行控制 -->
+        <commentGenerator>
+            <!-- suppressDate是去掉生成日期那行注释 -->
+            <property name="suppressDate" value="true"/>
+            <!-- suppressAllComments是去掉所有的注解 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--jdbc的数据库连接 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://47.92.24.144:3306/lotto_sit?characterEncoding=utf8"
+                userId="jbadm"
+                password="OdL78wAijb">
+        </jdbcConnection>
+
+        <!-- java类型处理器
+        用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+        注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+        -->
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- java模型创建器，是必须要的元素
+            负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
+            targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
+            targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
+         -->
+        <javaModelGenerator targetPackage="com.codido.hodor.model" targetProject="src/main/java">
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!-- 生成SQL map的XML文件生成器，
+            注意，在Mybatis3之后，我们可以使用mapper.xml文件+Mapper接口（或者不用mapper接口），
+                或者只使用Mapper接口+Annotation，
+                所以，如果 javaClientGenerator配置中配置了需要生成XML的话，这个元素就必须配置
+            targetPackage/targetProject:同javaModelGenerator
+         -->
+        <sqlMapGenerator targetPackage="com.codido.hodor.mapper" targetProject="src/main/resources">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+
+        <!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
+            targetPackage/targetProject:同javaModelGenerator
+            type：选择怎么生成mapper接口（在MyBatis3/MyBatis3Simple下）：
+                1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
+                2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；
+                3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
+            注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
+        -->
+        <javaClientGenerator targetPackage="com.codido.hodor.mapper" type="ANNOTATEDMAPPER"
+                             targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
+            tableName（必要）：要生成对象的表名；
+            domainObjectName 给表对应的 model 起名字
+            注意：大小写敏感问题。
+         -->
+        <!--用户表-->
+        <table tableName="t_usr_user" domainObjectName="UsrUser">
+            <!--用来修改表中某个列的属性,一个table元素中可以有多个columnOverride元素哈.
+                property属性来指定列要生成的属性名称.
+             -->
+            <!--<columnOverride column="username" property="userName" />-->
+            <generatedKey column="USER_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户OPENID记录表-->
+        <table tableName="t_usr_openid" domainObjectName="UsrOpenId">
+            <generatedKey column="RELA_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--短信验证码表-->
+        <table tableName="t_sms_code" domainObjectName="SmsCode">
+            <generatedKey column="SMS_CODE_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户关注的比赛信息表-->
+        <table tableName="t_usr_follow_match" domainObjectName="UsrFollowMatch">
+            <generatedKey column="FOLLOW_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户关注的彩种信息表-->
+        <table tableName="t_usr_subscriber_lotto" domainObjectName="UsrSubscriberLotto">
+            <generatedKey column="USR_SUBSCRIB_LOTTO_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户所属店铺关系表-->
+        <table tableName="t_usr_shop_rela" domainObjectName="UsrShopRela">
+            <generatedKey column="USR_SHOP_RELA_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户消息表-->
+        <table tableName="t_usr_msg" domainObjectName="UsrMsg">
+            <generatedKey column="MSG_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户token表-->
+        <table tableName="t_usr_token" domainObjectName="UsrToken">
+            <generatedKey column="TOKEN_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户绑定的银行卡表-->
+        <table tableName="t_usr_bankcard" domainObjectName="UsrBankCard">
+            <generatedKey column="USR_BANKCARD_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--系统包含的用户tag表-->
+        <table tableName="t_usr_tag" domainObjectName="UsrTag">
+            <generatedKey column="TAG_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户tag关系表-->
+        <table tableName="t_usr_tags" domainObjectName="UsrTags">
+            <generatedKey column="USER_TAG_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户密码表-->
+        <table tableName="t_usr_passwords" domainObjectName="UsrPasswords">
+            <generatedKey column="USR_PWD_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+
+
+        <!--彩种表-->
+        <table tableName="t_lot_lotto" domainObjectName="LotLotto">
+            <generatedKey column="LOTTO_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--彩种中奖信息配置表-->
+        <table tableName="t_lot_lotto_bonus" domainObjectName="LotLottoBonus">
+            <generatedKey column="LOTTO_BONUS_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--彩种期数表-->
+        <table tableName="t_lot_inst" domainObjectName="LotInst">
+            <generatedKey column="LOTTO_INST_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--彩种期数实例中奖信息表-->
+        <table tableName="t_lot_inst_bonus" domainObjectName="LotInstBonus">
+            <generatedKey column="BONUS_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--彩票相关比赛信息表-->
+        <table tableName="t_lot_match" domainObjectName="LotMatch">
+            <generatedKey column="MATCH_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--彩种和比赛信息关系表-->
+        <table tableName="t_lot_inst_match" domainObjectName="LotInstMatch">
+            <generatedKey column="LOT_INST_MATCH_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+        <!--详细比赛信息表-->
+        <table tableName="t_match_info" domainObjectName="MatchInfo">
+            <generatedKey column="MATCH_INFO_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--比赛联盟信息表-->
+        <table tableName="t_match_league" domainObjectName="MatchLeague">
+            <generatedKey column="LEAGUE_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--比赛赛季表-->
+        <table tableName="t_match_season" domainObjectName="MatchSeason">
+            <generatedKey column="SEASON_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--比赛轮次表-->
+        <table tableName="t_match_round" domainObjectName="MatchRound">
+            <generatedKey column="LEAGUE_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--球队表-->
+        <table tableName="t_match_team" domainObjectName="MatchTeam">
+            <generatedKey column="TEAM_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--球队赛季关系表-->
+        <table tableName="t_match_team_season_rela" domainObjectName="MatchTeamSeasonRela">
+            <generatedKey column="T_S_RELA_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--比赛玩法模板表-->
+        <table tableName="t_match_play" domainObjectName="MatchPlay">
+            <generatedKey column="MATCH_PLAY_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--比赛玩法实例表-->
+        <table tableName="t_match_play_inst" domainObjectName="MatchPlayInst">
+            <generatedKey column="MATCH_PLAY_INST_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--比赛选项赔率表-->
+        <table tableName="t_match_play_odds" domainObjectName="MatchPlayOdds">
+            <generatedKey column="ODDS_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+
+        <!--店铺信息表-->
+        <table tableName="t_shp_shop" domainObjectName="ShpShop">
+            <generatedKey column="SHOP_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--店铺销售的彩种信息表-->
+        <table tableName="t_shp_lotto_rela" domainObjectName="ShpLottoRela">
+            <generatedKey column="SHOP_LOTTO_RELA_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--店铺邀请码表-->
+        <table tableName="t_shp_shop_invite_code" domainObjectName="ShpShopInviteCode">
+            <generatedKey column="INVITE_CODE_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--店铺银行卡表-->
+        <table tableName="t_shp_bankcard" domainObjectName="ShpBankcard">
+            <generatedKey column="SHOP_BANKCARD_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+
+        <!--公共参数表-->
+        <table tableName="t_pub_param" domainObjectName="PubParam">
+            <generatedKey column="PARAM_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--公共微信参数表-->
+        <table tableName="t_pub_wxinfo" domainObjectName="PubWxInfo">
+            <generatedKey column="WX_INFO_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+
+        <!--订单表-->
+        <table tableName="t_ord_order" domainObjectName="OrdOrder">
+            <generatedKey column="ORDER_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--订单投注记录表-->
+        <table tableName="t_ord_betting_inst" domainObjectName="OrdBettingInst">
+            <generatedKey column="BETTING_INST_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--订单单注记录表-->
+        <table tableName="t_ord_betting_single_inst" domainObjectName="OrdBettingSingleInst">
+            <generatedKey column="SINGLE_INST_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--追号记录表-->
+        <table tableName="t_ord_chase" domainObjectName="OrdChase">
+            <generatedKey column="CHASE_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--追号投注信息表-->
+        <table tableName="t_ord_chase_betting" domainObjectName="OrdChaseBetting">
+            <generatedKey column="CHASE_BETTING_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--订单用户关系表-->
+        <table tableName="t_ord_orderuser" domainObjectName="OrdOrderUser">
+            <generatedKey column="ORDER_USER_INST_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--消息推送记录表-->
+        <table tableName="t_ord_sendmsg_rec" domainObjectName="OrdSendMsgRec">
+            <generatedKey column="SENDMSG_REC_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--退款订单表-->
+        <table tableName="t_ord_refund" domainObjectName="OrdRefund">
+            <generatedKey column="REFUND_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+        <!--平台账户表-->
+        <table tableName="t_acc_plat_account" domainObjectName="AccPlatAccount">
+            <generatedKey column="PLAT_ACCOUNT_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--平台账务明细表-->
+        <table tableName="t_acc_plat_acdt" domainObjectName="AccPlatAcdt">
+            <generatedKey column="PLAT_ACDT_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--平台账户表-->
+        <table tableName="t_acc_shop_account" domainObjectName="AccShopAccount">
+            <generatedKey column="SHOP_ACCOUNT_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--店铺账务明细表-->
+        <table tableName="t_acc_shop_acdt" domainObjectName="AccShopAcdt">
+            <generatedKey column="SHOP_ACDT_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户账户表-->
+        <table tableName="t_acc_user_account" domainObjectName="AccUserAccount">
+            <generatedKey column="USER_ACCOUNT_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--用户账务明细表-->
+        <table tableName="t_acc_user_acdt" domainObjectName="AccUserAcdt">
+            <generatedKey column="USER_ACDT_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--账户充值订单表-->
+        <table tableName="t_acc_pay_order" domainObjectName="AccPayOrder">
+            <generatedKey column="PAY_ORDER_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+        <!--账户提现订单表-->
+        <table tableName="t_acc_withdraw_order" domainObjectName="AccWithdrawOrder">
+            <generatedKey column="WITHDRAW_ORDER_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+        <!--平台支持的银行表-->
+        <table tableName="t_cmm_bank" domainObjectName="CmmBank">
+            <generatedKey column="BANK_ID" sqlStatement="JDBC"/>
+            <ignoreColumn column="TM_SMP" />
+        </table>
+
+    </context>
+
+</generatorConfiguration>

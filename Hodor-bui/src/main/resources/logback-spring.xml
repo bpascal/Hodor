@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<configuration scan="true">
+
+    <!--日志文件路径-->
+    <springProperty scope="context" name="logPath" source="log.path"/>
+
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>-->
+            <pattern>[%X{bizParam}][%-5level][%d{HH:mm:ss.SSS}][%logger{36}]:%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ch.qos.logback.core.rolling.RollingFileAppender 文件日志输出 -->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--<Encoding>UTF-8</Encoding>-->
+        <File>${logPath}/lottostore-bui.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logPath}/lottostore-bui-%d{yyyy-MM-dd}.%i.log
+            </FileNamePattern>
+            <MaxHistory>10</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>5MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--<pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>-->
+            <pattern>[%X{bizParam}][%-5level][%d{HH:mm:ss.SSS}][%logger{36}]:%msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- 异步输出 -->
+    <appender name ="async" class= "ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold >0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>512</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref ="file"/>
+    </appender>
+
+    <!--业务日志输出到文件，输出INFO级别-->
+    <logger name="com.codido.hodor" level="INFO" additivity="false">
+        <appender-ref ref="async"/>
+    </logger>
+
+    <!--sql日志输出-->
+    <logger name="com.codido.hodor.mapper" level="INFO" additivity="false">
+        <appender-ref ref="async" />
+    </logger>
+
+    <!--TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF-->
+    <!--本地开发路径配置-->
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+    <!--测试环境-->
+    <springProfile name="uat">
+        <root level="INFO">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+    <!--生产环境-->
+    <springProfile name="ptc">
+        <root level="INFO">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+</configuration>
