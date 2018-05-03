@@ -5,11 +5,8 @@
 # IntelliJ project files
 .idea
 *.iml
-out
-gen
 .gradle/
-hibaby-weixin-sdk/.gradle/
-hibaby-weixin-sdk/build/
 log/
-lottostore-core/build/
-lottostore-h5-cgi/build/
+out/
+gen/
+build/
