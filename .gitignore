@@ -10,3 +10,4 @@ log/
 out/
 gen/
 build/
+/logPath_IS_UNDEFINED/
