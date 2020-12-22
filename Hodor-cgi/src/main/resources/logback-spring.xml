@@ -15,9 +15,9 @@
     <!-- ch.qos.logback.core.rolling.RollingFileAppender 文件日志输出 -->
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<Encoding>UTF-8</Encoding>-->
-        <File>${logPath}/lottostore-h5-cgi.log</File>
+        <File>${logPath}/hodor-api-server.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logPath}/lottostore-h5-cgi-%d{yyyy-MM-dd}.%i.log
+            <FileNamePattern>${logPath}/hodor-api-server-%d{yyyy-MM-dd}.%i.log
             </FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -41,14 +41,14 @@
     </appender>
 
     <!--业务日志输出到文件，输出INFO级别-->
-    <logger name="com.codido.hodor" level="INFO" additivity="false">
-        <appender-ref ref="async"/>
-    </logger>
+    <!--<logger name="com.codido.hodor.api" level="INFO" additivity="false">-->
+        <!--<appender-ref ref="async"/>-->
+    <!--</logger>-->
 
     <!--sql日志输出-->
-    <logger name="com.codido.hodor.mapper" level="INFO" additivity="false">
-        <appender-ref ref="async" />
-    </logger>
+    <!--<logger name="com.codido.hodor.core.mapper" level="DEBUG" additivity="false">-->
+        <!--<appender-ref ref="async" />-->
+    <!--</logger>-->
 
     <!--TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF-->
     <!--本地开发路径配置-->
@@ -60,15 +60,15 @@
 
     <!--测试环境-->
     <springProfile name="uat">
-        <root level="INFO">
-            <appender-ref ref="console" />
+        <root level="DEBUG">
+            <appender-ref ref="async" />
         </root>
     </springProfile>
 
     <!--生产环境-->
     <springProfile name="ptc">
         <root level="INFO">
-            <appender-ref ref="console" />
+            <appender-ref ref="async" />
         </root>
     </springProfile>
 

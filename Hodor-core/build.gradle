@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.1.2.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -16,41 +16,69 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile("org.apache.commons:commons-lang3:3.4")
-    compile("org.apache.httpcomponents:httpcore:4.4.8")
-    compile("org.apache.httpcomponents:httpclient:4.5.4")
-    compile("org.apache.httpcomponents:httpmime:4.5.4")
-    compile("commons-codec:commons-codec:1.9")
-    compile("commons-io:commons-io:2.5")
+    implementation("org.apache.commons:commons-lang3:3.4")
+    implementation("org.apache.httpcomponents:httpcore:4.4.8")
+    implementation("org.apache.httpcomponents:httpclient:4.5.4")
+    implementation("org.apache.httpcomponents:httpmime:4.5.4")
+    implementation("commons-codec:commons-codec:1.9")
+    implementation("commons-io:commons-io:2.5")
+    runtime('javax.servlet:javax.servlet-api')
 
     compile("com.thoughtworks.xstream:xstream:1.4.9")
+    compile('org.dom4j:dom4j:2.1.1')
 
-    compile("com.alibaba:fastjson:1.2.15")
-    compileOnly("org.projectlombok:lombok:1.16.10")
-    compile("org.slf4j:slf4j-api:1.7.21")
-    compile("ch.qos.logback:logback-classic:1.1.7")
+    implementation('com.google.code.gson:gson:2.8.2')
+    implementation("com.alibaba:fastjson:1.2.15")
+    compileOnly "org.projectlombok:lombok:1.16.10"
+    implementation("org.slf4j:slf4j-api:1.7.21")
+    implementation("ch.qos.logback:logback-classic:1.1.7")
 
-    compile('com.qiniu:qiniu-java-sdk:7.2.11')
-    compile('net.coobird:thumbnailator:0.4.8')
+    compile('com.qiniu:qiniu-java-sdk:7.2.27')
+    implementation('net.coobird:thumbnailator:0.4.8')
 
-    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+    implementation('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
 
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile("org.dom4j:dom4j:2.0.0")
-    runtime('mysql:mysql-connector-java')
-    compile("org.projectlombok:lombok:1.16.20")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.dom4j:dom4j:2.0.0"
+    runtimeOnly 'mysql:mysql-connector-java'
+    //implementation "org.projectlombok:lombok:1.16.20"
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+//    compileOnly 'org.projectlombok:lombok:1.18.8'
+
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.60'
 
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
 
 //mybatis generator plugin ------ start
 buildscript {
@@ -72,6 +100,6 @@ configurations {
 
 mybatisGenerator {
     verbose = true
-    configFile = 'src/main/resources/tools/generatorConfig.xml'
+    configFile = 'src/main/resources/tools/NeedleGeneratorConfig.xml'
 }
 //mybatis generator plugin ------ end

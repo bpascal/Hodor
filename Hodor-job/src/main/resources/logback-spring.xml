@@ -15,9 +15,9 @@
     <!-- ch.qos.logback.core.rolling.RollingFileAppender 文件日志输出 -->
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<Encoding>UTF-8</Encoding>-->
-        <File>${logPath}/lottostore-job.log</File>
+        <File>${logPath}/hodor-job.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logPath}/lottostore-job-%d{yyyy-MM-dd}.%i.log
+            <FileNamePattern>${logPath}/hodor-job-%d{yyyy-MM-dd}.%i.log
             </FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -41,12 +41,12 @@
     </appender>
 
     <!--业务日志输出到文件，输出INFO级别-->
-    <logger name="com.codido.hodor" level="INFO" additivity="false">
+    <logger name="com.codido.hodor.api" level="INFO" additivity="false">
         <appender-ref ref="async"/>
     </logger>
 
     <!--sql日志输出-->
-    <logger name="com.codido.hodor.mapper" level="INFO" additivity="false">
+    <logger name="com.codido.hodor.core.mapper" level="INFO" additivity="false">
         <appender-ref ref="async" />
     </logger>
 
@@ -60,7 +60,7 @@
 
     <!--测试环境-->
     <springProfile name="uat">
-        <root level="INFO">
+        <root level="DEBUG">
             <appender-ref ref="console" />
         </root>
     </springProfile>

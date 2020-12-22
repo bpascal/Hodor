@@ -1,83 +1,73 @@
 #数据源基础信息
 spring:
-    datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://47.92.24.144:3306/lotto_sit?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false
-        username: jbadm
-        password: 111111
-        driverClassName: com.mysql.jdbc.Driver
-        initialSize: 5
-        minIdle: 5
-        maxActive: 20
-        maxWait: 60000
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: SELECT 1 FROM t_pub_param
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxPoolPreparedStatementPerConnectionSize: 20
-        filters: stat,wall,log4j
-        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000\
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://111.111.111.111:3306/hodor?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false
+    username: hodor_adm
+    password: 888888888
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM t_pub_param
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000\
+  redis:
+    host: 47.92.24.144
+    port: 8998
+    database: 0
+    password: ddR7uO8a
+    timeout: 3000
+
 
 #服务相关参数
 server:
-    port: 8089
+  port: 8089
 
 #日志参数
 log:
-    path: /Users/bpascal/Documents/workspaces/ideaworkspace/lottostore/log
+  path: /Users/bpascal/Documents/workspaces/ideaworkspace/lottostore/log
+
+#mybatis基础配置
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
 
 #微信参数
-wechat:
-    mp:
-        appId: 111111
-        secret: 111111
-        token: 111111
-        aesKey: 111111
-    jiqibaba:
-        appId: 111111
-        secret: 111111
-        token: 111111
-        aesKey: 111111
-    pay:
-        appId: 111111
-        mchId: 111111
-        mchKey: 111111
-        keyPath: /home/serveradm/apiclient_cert.p12
-    zdjl:
-        appId: 111111
-        secret: 111111
-        token: 111111
-        aesKey: 111111
-
-##服务商模式下的子商户公众账号ID
-#subAppId=
-##服务商模式下的子商户号
-#subMchId=
+wx:
+  mp:
+    appId: wx6c88e29c7c621f1f
+    secret: 4bfdce612906f8eff8e738cf642918b0
+    token: LongLiveJB2099
+    aesKey: Xdku2WTJWpyo05qiOmnbqRRWMUvMxsKwZJmDsIbCgu4
 
 #服务路径相关
+#服务路径相关
 basecontext:
-    urlpath:
-        requestpath: http://mt.caishiduo.com
-        zdjlrequestpath: http://mt.zdjl.caishiduo.com
-    filepath:
-        picsavepath: /home/webadm/webroot/resources/images/
-        picrequestpath: http://mt.jiqibaba.com/resources/images/
-    serverpath:
-        serverip: 47.92.24.144
-        notifycontext: http://mt.caishiduo.com/lottostore-h5-cgi
-
-#中大奖了机器人后台服务上下文
-robotbasecontext:
-    urlpath:
-        transorderpath: http://112.65.144.19:8083
+  urlpath:
+    requestpath: http://mt.caishiduo.com
+    zdjlrequestpath: http://mt.zdjl.caishiduo.com
+  filepath:
+    picsavepath: /Users/bpascal/Desktop/
+    picrequestpath: http://mt.jiqibaba.com/resources/images/
+  serverpath:
+    serverip: 47.92.24.144
+    notifycontext: http://mt.caishiduo.com/lottostore-h5-cgi
+  mallpath:
+    mallbasepath: https://mt.jiqibaba.com/mall/
 
 #七牛云存储参数
 qiniu:
-    userparams:
-        accesskey: 111111
-        secretkey: 111111
-        imagebucket: 111111
-        filecontext: 111111
+  userparams:
+    accesskey: 111111
+    secretkey: 111111
+    imagebucket: 111111
+    filecontext: 111111

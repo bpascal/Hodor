@@ -1,56 +1,74 @@
 #数据源基础信息
 spring:
-    datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://47.92.24.144:3306/lotto_sit?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false
-        username: jbadm
-        password: 111111
-        driverClassName: com.mysql.jdbc.Driver
-        initialSize: 5
-        minIdle: 5
-        maxActive: 20
-        maxWait: 60000
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: SELECT 1 FROM t_pub_param
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxPoolPreparedStatementPerConnectionSize: 20
-        filters: stat,wall,log4j
-        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000\
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://111.111.111.111:3306/hodor?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false
+    username: hodor_adm
+    password: 888888888
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM t_pub_param
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000\
+  redis:
+    host: 47.92.24.144
+    port: 8998
+    database: 0
+    password: ddR7uO8a
+    timeout: 3000
+
+#mybatis基础配置
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+#mybatis分页相关配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql;pageSize=0
+  pageSizeZero: true
 
 #服务相关参数
 server:
-    port: 8089
+  port: 8848
 
 #日志参数
 log:
-    path: /Users/bpascal/Documents/workspaces/ideaworkspace/lottostore/log
-
+#  path: /Users/gongtao/Downloads/log
+logging:
+  level:
+    root: INFO
+    com.codido.hodor.core.mapper: debug
 #微信参数
 wechat:
-    mp:
-        appId: 111111
-        secret: 111111
-        token: 111111
-        aesKey: 111111
-    jiqibaba:
-        appId: 111111
-        secret: 111111
-        token: 111111
-        aesKey: 111111
-    pay:
-        appId: 111111
-        mchId: 111111
-        mchKey: 111111
-        keyPath: /home/serveradm/apiclient_cert.p12
-    zdjl:
-        appId: 111111
-        secret: 111111
-        token: 111111
-        aesKey: 111111
+  app:
+    appId: wx209e789aebc1fd6e
+    secret: 2b35c39119e6381ccd3ed648ecc6a3c3
+    token: 111111
+    aesKey: 111111
+  jiqibaba:
+    appId: wxb0df5ef1b490a8b1
+    secret: eefe01bbd4c9ba76b152b321f81a5349
+    token: nUllk8ZtI3
+    aesKey: FegO6XA3vOLIQ3o2AOy7UrrsupMtTj2p3d6CTlGkQME
+  pay:
+    appId: wxb0df5ef1b490a8b1
+    mchId: 1482967462
+    mchKey: pKtgKaJ4xDmrXK9xauB84b4JgQ7PuxOA
+    keyPath: /home/serveradm/apiclient_cert.p12
+
 
 ##服务商模式下的子商户公众账号ID
 #subAppId=
@@ -59,25 +77,22 @@ wechat:
 
 #服务路径相关
 basecontext:
-    urlpath:
-        requestpath: http://mt.caishiduo.com
-        zdjlrequestpath: http://mt.zdjl.caishiduo.com
-    filepath:
-        picsavepath: /home/webadm/webroot/resources/images/
-        picrequestpath: http://mt.jiqibaba.com/resources/images/
-    serverpath:
-        serverip: 47.92.24.144
-        notifycontext: http://mt.caishiduo.com/lottostore-h5-cgi
-
-#中大奖了机器人后台服务上下文
-robotbasecontext:
-    urlpath:
-        transorderpath: http://112.65.144.19:8083
+  urlpath:
+    requestpath: http://mt.caishiduo.com
+    zdjlrequestpath: http://mt.zdjl.caishiduo.com
+  filepath:
+    picsavepath: /Users/bpascal/Desktop/
+    picrequestpath: http://mt.jiqibaba.com/resources/images/
+  serverpath:
+    serverip: 47.92.24.144
+    notifycontext: http://mt.caishiduo.com/lottostore-h5-cgi
+  mallpath:
+    mallbasepath: https://mt.jiqibaba.com/mall/
 
 #七牛云存储参数
 qiniu:
-    userparams:
-        accesskey: 111111
-        secretkey: 111111
-        imagebucket: 111111
-        filecontext: 111111
+  userparams:
+    accesskey: yAC2iK-zdCfoo-4RttvC9rmKi98TwVXtfvu6EQHl
+    secretkey: f0JjZtkq77zoxXaneP2E7xcKPLKWNKALnlaUHFj5
+    imagebucket: caishiduo
+    filecontext: http://images.jiqibaba.com/
