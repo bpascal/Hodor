@@ -1,4 +1,4 @@
-package com.codido.hodor.core.util;
+package com.codido.hodor.core.common.util;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
