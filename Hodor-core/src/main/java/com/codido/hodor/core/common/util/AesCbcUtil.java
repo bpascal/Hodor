@@ -1,4 +1,4 @@
-package com.codido.hodor.core.util;
+package com.codido.hodor.core.common.util;
 
 import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;

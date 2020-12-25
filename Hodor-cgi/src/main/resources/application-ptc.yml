@@ -57,48 +57,24 @@ logging:
 wechat:
   app:
     appId: wx209e789aebc1fd6e
-    secret: 2b35c39119e6381ccd3ed648ecc6a3c3
+    secret: 111111111111111111111111111111
     token: 111111
     aesKey: 111111
-  jiqibaba:
-    appId: wxb0df5ef1b490a8b1
-    secret: eefe01bbd4c9ba76b152b321f81a5349
-    token: nUllk8ZtI3
-    aesKey: FegO6XA3vOLIQ3o2AOy7UrrsupMtTj2p3d6CTlGkQME
   pay:
     appId: wxb0df5ef1b490a8b1
-    mchId: 1482967462
-    mchKey: pKtgKaJ4xDmrXK9xauB84b4JgQ7PuxOA
+    mchId: 1111111111
+    mchKey: 111111111111111111111111111111
     keyPath: /home/serveradm/apiclient_cert.p12
-
-##服务商模式下的子商户公众账号ID
-#subAppId=
-##服务商模式下的子商户号
-#subMchId=
 
 #服务路径相关
 basecontext:
   urlpath:
-    requestpath: https://m.caishiduo.com
-    zdjlrequestpath: https://m.zdjl.caishiduo.com
-  filepath:
-    picsavepath: /home/webadm/webroot/resources/images/
-    picrequestpath: https://m.caishiduo.com/resources/images/
-  serverpath:
-    serverip: 112.74.163.242
-    notifycontext: https://m.caishiduo.com/backapi
-  mallpath:
-    mallbasepath: https://vip.jiqibaba.com/mall/
-
-#中大奖了机器人后台服务上下文
-robotbasecontext:
-  urlpath:
-    transorderpath: http://112.65.144.19:8083
+    requestpath: http://www.rivendell.top
 
 #七牛云存储参数
 qiniu:
   userparams:
     accesskey: yAC2iK-zdCfoo-4RttvC9rmKi98TwVXtfvu6EQHl
-    secretkey: f0JjZtkq77zoxXaneP2E7xcKPLKWNKALnlaUHFj5
-    imagebucket: caishiduo
-    filecontext: http://images.jiqibaba.com/
+    secretkey: 1111111111111111111111111111111111111111
+    imagebucket: bpascal
+    filecontext: http://images.rivendell.top/

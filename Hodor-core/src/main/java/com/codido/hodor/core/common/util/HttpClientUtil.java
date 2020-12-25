@@ -1,4 +1,4 @@
-package com.codido.hodor.core.util;
+package com.codido.hodor.core.common.util;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -41,31 +41,27 @@ mybatis:
     mapUnderscoreToCamelCase: true
 
 #微信参数
-wx:
-  mp:
-    appId: wx6c88e29c7c621f1f
-    secret: 4bfdce612906f8eff8e738cf642918b0
-    token: LongLiveJB2099
-    aesKey: Xdku2WTJWpyo05qiOmnbqRRWMUvMxsKwZJmDsIbCgu4
+wechat:
+  app:
+    appId: wx209e789aebc1fd6e
+    secret: 111111111111111111111111111111
+    token: 111111
+    aesKey: 111111
+  pay:
+    appId: wxb0df5ef1b490a8b1
+    mchId: 1111111111
+    mchKey: 111111111111111111111111111111
+    keyPath: /home/serveradm/apiclient_cert.p12
 
 #服务路径相关
 basecontext:
   urlpath:
-    requestpath: https://m.caishiduo.com
-    zdjlrequestpath: https://m.zdjl.caishiduo.com
-  filepath:
-    picsavepath: /home/webadm/webroot/resources/images/
-    picrequestpath: https://m.caishiduo.com/resources/images/
-  serverpath:
-    serverip: 112.74.163.242
-    notifycontext: https://m.caishiduo.com/backapi
-  mallpath:
-    mallbasepath: https://vip.jiqibaba.com/mall/
+    requestpath: http://www.rivendell.top
 
 #七牛云存储参数
 qiniu:
   userparams:
-    accesskey: 111111
-    secretkey: 111111
-    imagebucket: 111111
-    filecontext: http://p5tzl8eml.bkt.clouddn.com/
+    accesskey: yAC2iK-zdCfoo-4RttvC9rmKi98TwVXtfvu6EQHl
+    secretkey: 1111111111111111111111111111111111111111
+    imagebucket: bpascal
+    filecontext: http://images.rivendell.top/

@@ -1,4 +1,4 @@
-package com.codido.hodor.core.util;
+package com.codido.hodor.core.common.util;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,7 +21,7 @@ public class PictureUtil {
             graphics.fillRect(0, 0, imageWidth, imageHeight);
             graphics.setColor(new Color(0,0,0));
             graphics.drawString("天天骑牛", 10, 100);
-            graphics.drawString("www.caishiduo.com", 10, 136);
+            graphics.drawString("www.rivendell.top", 10, 136);
             ImageIO.write(image, "PNG", new File("/Users/bpascal/Desktop/abc.png"));//生成图片方法一
             //ImageIO,可以生成不同格式的图片，比如JPG,PNG,GIF.....
         }

@@ -177,39 +177,9 @@ public class CommonConstans {
     public static String ORDER_PUSH_STS_SUCCESS = "S";//推送成功
 
     /**
-     * 消息类型
-     */
-    public static String MSG_TYPE_ORDERIN = "O";//接单处理
-    public static String MSG_TYPE_ORDERPROCESS = "A";//确认订单处理
-    public static String MSG_TYPE_ORDERREJECT = "R";//撤销订单处理
-    public static String MSG_TYPE_ORDERBONUS = "B";//中奖通知
-    public static String MSG_TYPE_LOTTOBONUS = "L";//开奖通知
-    public static String MSG_TYPE_ORDERTAKETICKET = "T";//订单取票处理
-
-
-    /**
      * 密码类型
      */
     public static String PWD_TYPE_LOGIN = "L";//登录密码
-
-
-    /**
-     * 退款状态
-     */
-    public static String REFUND_RECORD_STATUS_SUCCESS = "SUCCESS";//退款成功
-    public static String REFUND_RECORD_STATUS_FAILD = "FAIL";//退款失败
-    public static String REFUND_RECORD_STATUS_PROCESSING = "PROCESSING";//退款处理中
-    public static String REFUND_RECORD_STATUS_CHANGE = "CHANGE";//转入代发
-
-    /**
-     * 默认图片地址
-     */
-    public static String DEFAULT_LOGO_IMG_URL = "http://images.jiqibaba.com/icon/";
-
-    /**
-     * 默认的关闭了用户隐私设置的用户logo
-     */
-    public static String DEFAULT_OFFPRCLOGO_IMG_URL = "http://images.jiqibaba.com/newlogo.png";
 
     /**
      * 错误码

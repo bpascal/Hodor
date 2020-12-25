@@ -135,7 +135,7 @@ public class JBPictureUtil {
             //生成图片
             JBPictureUtil.createImage("赖", file);
             //上传到七牛
-            //String imgUrl = JBPictureUtil.picUploadQiNiu(file,"yAC2iK-zdCfoo-4RttvC9rmKi98TwVXtfvu6EQHl","f0JjZtkq77zoxXaneP2E7xcKPLKWNKALnlaUHFj5","caishiduo","http://images.jiqibaba.com/",fileName);
+            //String imgUrl = JBPictureUtil.picUploadQiNiu(file,"yAC2iK-zdCfoo-4RttvC9rmKi98TwVXtfvu6EQHl","f0JjZtkq77zoxXaneP2E7xcKPLKWNKALnlaUHFj5","caishiduo","http://images.rivendell.top/",fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }
