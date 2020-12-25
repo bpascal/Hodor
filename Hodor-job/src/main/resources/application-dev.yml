@@ -34,7 +34,7 @@ server:
 
 #日志参数
 log:
-  path: /Users/bpascal/Documents/workspaces/ideaworkspace/lottostore/log
+  $path: /Users/bpascal/Documents/workspaces/ideaworkspace/lottostore/log
 
 #mybatis基础配置
 mybatis:
@@ -42,32 +42,27 @@ mybatis:
     mapUnderscoreToCamelCase: true
 
 #微信参数
-wx:
-  mp:
-    appId: wx6c88e29c7c621f1f
-    secret: 4bfdce612906f8eff8e738cf642918b0
-    token: LongLiveJB2099
-    aesKey: Xdku2WTJWpyo05qiOmnbqRRWMUvMxsKwZJmDsIbCgu4
+wechat:
+  app:
+    appId: wx209e789aebc1fd6e
+    secret: 111111111111111111111111111111
+    token: 111111
+    aesKey: 111111
+  pay:
+    appId: wxb0df5ef1b490a8b1
+    mchId: 1111111111
+    mchKey: 111111111111111111111111111111
+    keyPath: /home/serveradm/apiclient_cert.p12
 
-#服务路径相关
 #服务路径相关
 basecontext:
   urlpath:
-    requestpath: http://mt.caishiduo.com
-    zdjlrequestpath: http://mt.zdjl.caishiduo.com
-  filepath:
-    picsavepath: /Users/bpascal/Desktop/
-    picrequestpath: http://mt.jiqibaba.com/resources/images/
-  serverpath:
-    serverip: 47.92.24.144
-    notifycontext: http://mt.caishiduo.com/lottostore-h5-cgi
-  mallpath:
-    mallbasepath: https://mt.jiqibaba.com/mall/
+    requestpath: http://www.rivendell.top
 
 #七牛云存储参数
 qiniu:
   userparams:
-    accesskey: 111111
-    secretkey: 111111
-    imagebucket: 111111
-    filecontext: 111111
+    accesskey: yAC2iK-zdCfoo-4RttvC9rmKi98TwVXtfvu6EQHl
+    secretkey: 1111111111111111111111111111111111111111
+    imagebucket: bpascal
+    filecontext: http://images.rivendell.top/
