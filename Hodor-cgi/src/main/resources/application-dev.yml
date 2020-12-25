@@ -21,10 +21,10 @@ spring:
     filters: stat,wall,log4j
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000\
   redis:
-    host: 47.92.24.144
+    host: xxx.xxx.xxx.xxx
     port: 8998
     database: 0
-    password: ddR7uO8a
+    password: 11111111
     timeout: 3000
 
 #mybatis基础配置
