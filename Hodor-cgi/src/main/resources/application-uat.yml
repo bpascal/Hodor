@@ -102,3 +102,10 @@ qiniu:
     secretkey: f0JjZtkq77zoxXaneP2E7xcKPLKWNKALnlaUHFj5
     imagebucket: caishiduo
     filecontext: http://images.jiqibaba.com/
+
+#swagger配置，只有测试环境需要
+springfox:
+  documentation:
+    swagger:
+      v2:
+        host: www.rivendell.top/hodor
