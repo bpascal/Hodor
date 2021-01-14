@@ -1,17 +1,9 @@
 package com.codido.hodor.job.job.scheduling;
 
-import com.codido.hodor.job.job.bean.dto.BaseRetDto;
-import com.codido.hodor.core.common.util.JBDateUtil;
-import com.codido.hodor.core.common.util.JBUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * 处理用户的订阅实例的定时任务
