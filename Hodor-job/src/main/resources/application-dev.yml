@@ -34,8 +34,11 @@ server:
 
 #日志参数
 log:
-  $path: /Users/bpascal/Documents/workspaces/ideaworkspace/lottostore/log
-
+#  path: /Users/bpascal/Downloads/log
+logging:
+  level:
+    root: INFO
+    com.codido.needle.core.mapper: debug
 #mybatis基础配置
 mybatis:
   configuration:
