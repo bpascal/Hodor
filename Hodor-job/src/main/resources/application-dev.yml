@@ -38,7 +38,7 @@ log:
 logging:
   level:
     root: INFO
-    com.codido.needle.core.mapper: debug
+    com.codido.hodor.core.mapper: debug
 #mybatis基础配置
 mybatis:
   configuration:

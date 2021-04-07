@@ -29,8 +29,8 @@ public class SwaggersConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Needle接口文档")
-                .description("Needle用于各种会员充值的服务")
+                .title("Hodor接口文档")
+                .description("Hodor接口服务")
                 .termsOfServiceUrl("http://www.rivendell.top/CV.html")
                 .contact("双例模式")
                 .version("1.0")

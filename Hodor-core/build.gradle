@@ -100,6 +100,6 @@ configurations {
 
 mybatisGenerator {
     verbose = true
-    configFile = 'src/main/resources/tools/NeedleGeneratorConfig.xml'
+    configFile = 'src/main/resources/tools/HodorGeneratorConfig.xml'
 }
 //mybatis generator plugin ------ end
