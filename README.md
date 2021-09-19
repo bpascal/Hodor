@@ -24,15 +24,15 @@
 12. resq:响应对象，作为controller方法的返回，严格按照json格式要求编写，使用lombak注解生成getter和setter方法及toString方法，使用swagger注解生成接口文档
 13. vo:请求/响应对象中使用的业务对象，严格按照json格式要求编写，使用lombak注解生成getter和setter方法及toString方法，使用swagger注解生成接口文档
 
-#### 1.工程目录介绍
+#### 2.工程目录介绍
 
 1. Hodor-core工程：包含公共后端逻辑和DAO层的Mybatis代码
 2. Hodor-cgi工程：包含具体业务接口的service和controller逻辑
 3. Hodor-job工程：轮训业务工程，包含轮训需要操作的一些类和方法
 
 
-#### 2.开发规范
+#### 3.开发规范
 
 
 
-#### 3.参考资料
+#### 4.参考资料
