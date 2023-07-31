@@ -42,7 +42,7 @@ dependencies {
 
     implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0')
     implementation('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
-    runtime('mysql:mysql-connector-java')
+    runtimeOnly('mysql:mysql-connector-java')
     implementation('com.alibaba:druid:1.1.10')
 
     implementation('com.alibaba:fastjson:1.2.12')
