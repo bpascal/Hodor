@@ -32,7 +32,7 @@ configurations {
 }
 
 dependencies {
-    compile project(':Hodor-core')
+    implementation project(':Hodor-core')
 
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation("org.springframework.boot:spring-boot-starter-jetty:1.4.1.RELEASE")
@@ -76,5 +76,30 @@ dependencies {
     implementation('com.github.xiaoymin:swagger-bootstrap-ui:1.9.6')
     implementation('com.github.caspar-chen:swagger-ui-layer:1.1.3')
 
+    //通义千问AI
+    implementation('com.alibaba:dashscope-sdk-java:2.16.10')
+
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
+
+//jar {
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//}
+//
+//bootJar {
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//}
+
+//tasks.withType(AbstractArchiveTask).configureEach {
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//}
+
+//tasks.register('customCopyTask', Copy) {
+//    from 'sourceDir'
+//    into 'destinationDir'
+//}
+//
+//tasks.withType(Copy).configureEach {
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//}
+
