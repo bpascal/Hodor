@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.2.RELEASE'
+        springBootVersion = '2.7.18'
     }
     repositories {
         mavenCentral()
@@ -15,11 +15,11 @@ version '1.0-SNAPSHOT'
 
 
 apply plugin: 'java'
-//apply plugin: 'war'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -27,39 +27,36 @@ repositories {
 
 //排除tomcat配置
 configurations {
-    compile.exclude module: "spring-boot-starter-tomcat"
+    implementation.exclude module: "spring-boot-starter-tomcat"
 }
 
 dependencies {
     implementation project(':Hodor-core')
 
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation("org.springframework.boot:spring-boot-starter-jetty:1.4.1.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-jetty")
     implementation('org.springframework.boot:spring-boot-configuration-processor')
     implementation('org.springframework.boot:spring-boot-starter-aop')
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
 
-    implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0')
-    runtimeOnly('mysql:mysql-connector-java')
-    implementation('com.alibaba:druid:1.1.10')
+    implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.2')
+    runtimeOnly('mysql:mysql-connector-java:8.0.33')
+    implementation('com.alibaba:druid:1.2.20')
 
-    implementation('com.alibaba:fastjson:1.2.12')
-    implementation('org.codehaus.jackson:jackson-core-asl:1.9.13')
-    implementation('com.google.code.gson:gson:2.8.2')
+    implementation('com.alibaba:fastjson:1.2.83')
+    implementation('com.google.code.gson:gson:2.10.1')
 
-    //implementation('com.github.binarywang:weixin-java-mp:2.9.0')
-    //implementation('com.github.binarywang:weixin-java-pay:2.9.0')
     implementation('com.github.binarywang:wx-java-mp-spring-boot-starter:3.7.0')
     implementation('com.github.binarywang:weixin-java-mp:3.7.0')
 
-    implementation("org.apache.commons:commons-lang3:3.4")
-    implementation("org.apache.httpcomponents:httpcore:4.4.8")
-    implementation("org.apache.httpcomponents:httpclient:4.5.4")
-    implementation("org.apache.httpcomponents:httpmime:4.5.4")
-    implementation("com.thoughtworks.xstream:xstream:1.4.9")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("org.apache.httpcomponents:httpcore:4.4.16")
+    implementation("org.apache.httpcomponents:httpclient:4.5.14")
+    implementation("org.apache.httpcomponents:httpmime:4.5.14")
+    implementation("com.thoughtworks.xstream:xstream:1.4.20")
 
-    annotationProcessor 'org.projectlombok:lombok:1.18.2'
-    compileOnly 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

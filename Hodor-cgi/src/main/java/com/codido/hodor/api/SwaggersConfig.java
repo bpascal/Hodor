@@ -7,12 +7,13 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @Configuration
-@EnableSwagger2
+@EnableOpenApi
 @Profile({"dev", "uat"})
 public class SwaggersConfig {
 
@@ -32,7 +33,7 @@ public class SwaggersConfig {
                 .title("Hodor接口文档")
                 .description("Hodor接口服务")
                 .termsOfServiceUrl("http://www.rivendell.top/CV.html")
-                .contact("双例模式")
+                .contact(new Contact("双例模式", "", ""))
                 .version("1.0")
                 .build();
     }
