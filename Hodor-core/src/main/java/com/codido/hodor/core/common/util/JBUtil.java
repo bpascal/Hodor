@@ -114,8 +114,8 @@ public class JBUtil {
             }
         } else {
             Integer num1, num2, num3;
-            num2 = (new Double(Math.ceil(new Double(nameLength) / 3))).intValue();
-            num1 = (new Double(Math.floor(new Double(nameLength) / 3))).intValue();
+            num2 = (Double.valueOf(Math.ceil(Double.valueOf(nameLength) / 3))).intValue();
+            num1 = (Double.valueOf(Math.floor(Double.valueOf(nameLength) / 3))).intValue();
             num3 = nameLength - num1 - num2;
             String star = StringUtils.repeat("*", num2);
             userNameAfterReplaced = userName.replaceAll("(.{" + num1 + "})(.{" + num2 + "})(.{" + num3 + "})", "$1" + star + "$3");
